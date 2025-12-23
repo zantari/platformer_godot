@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://c8jetajretcys"]
+
+[ext_resource type="Script" uid="uid://7db586nnl6jl" path="res://Scenes/slime.gd" id="1_aiwxb"]
+[ext_resource type="Texture2D" uid="uid://bpcf6yo2ja2s1" path="res://graphics/Enemies/slime.png" id="1_jokqx"]
+[ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_paq7w"]
+[ext_resource type="Texture2D" uid="uid://l13m6wlqqujv" path="res://graphics/Enemies/slime1frame.png" id="4_f4si1"]
+[ext_resource type="Texture2D" uid="uid://bgbiufncexmji" path="res://graphics/Enemies/slime2frame.png" id="5_5gljc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4si1"]
+resource_local_to_scene = true
+shader = ExtResource("2_paq7w")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swwnm"]
+atlas = ExtResource("1_jokqx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_paq7w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swwnm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f4si1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f4si1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5gljc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.5
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vblni"]
+radius = 9.0
+height = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gljc"]
+size = Vector2(16, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vblni"]
+size = Vector2(2, 2)
+
+[node name="Slime" type="Area2D"]
+collision_layer = 4
+collision_mask = 18
+script = ExtResource("1_aiwxb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_f4si1")
+sprite_frames = SubResource("SpriteFrames_paq7w")
+autoplay = "default"
+frame_progress = 0.5197524
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_vblni")
+
+[node name="wall_protect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_protect"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_5gljc")
+
+[node name="right_cliff_protect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_cliff_protect"]
+position = Vector2(-8, 10)
+shape = SubResource("RectangleShape2D_vblni")
+
+[node name="left_cliff_protect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_cliff_protect"]
+position = Vector2(8, 10)
+shape = SubResource("RectangleShape2D_vblni")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 28.0
+offset_bottom = -4.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[node name="regin_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="wall_protect" to="." method="_on_wall_protect_body_entered"]
+[connection signal="body_exited" from="right_cliff_protect" to="." method="_on_right_cliff_protect_body_exited"]
+[connection signal="body_exited" from="left_cliff_protect" to="." method="_on_left_cliff_protect_body_exited"]
+[connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]

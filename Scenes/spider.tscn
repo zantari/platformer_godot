@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://svafhv701gl2"]
+
+[ext_resource type="Script" uid="uid://xim8nyntma3f" path="res://Scenes/spider.gd" id="1_sbdki"]
+[ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_qu26k"]
+[ext_resource type="Texture2D" uid="uid://bfryq2rwlr0q3" path="res://graphics/Enemies/Untitled 12-23-2025 12-51-42.png" id="3_nxbgl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b7lw1"]
+resource_local_to_scene = true
+shader = ExtResource("2_qu26k")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1856"]
+atlas = ExtResource("3_nxbgl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7lw1"]
+atlas = ExtResource("3_nxbgl")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x1856"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1856")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7lw1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l5dqu"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n80vc"]
+size = Vector2(15, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1856"]
+size = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7lw1"]
+size = Vector2(1, 1)
+
+[node name="Spider" type="Area2D"]
+collision_layer = 4
+collision_mask = 18
+script = ExtResource("1_sbdki")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_b7lw1")
+position = Vector2(1, -4)
+sprite_frames = SubResource("SpriteFrames_x1856")
+autoplay = "default"
+frame_progress = 0.5273111
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_l5dqu")
+
+[node name="BorderArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderArea2D"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_n80vc")
+
+[node name="RightCliffArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCliffArea"]
+position = Vector2(6, 4.5)
+shape = SubResource("RectangleShape2D_x1856")
+
+[node name="LeftCliffArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCliffArea"]
+position = Vector2(-6, 4.5)
+shape = SubResource("RectangleShape2D_b7lw1")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -8.0
+offset_top = -10.0
+offset_right = 28.0
+offset_bottom = -4.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[node name="regin_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="BorderArea2D" to="." method="_on_border_area_2d_body_entered"]
+[connection signal="body_exited" from="RightCliffArea" to="." method="_on_right_cliff_area_body_exited"]
+[connection signal="body_exited" from="LeftCliffArea" to="." method="_on_left_cliff_area_body_exited"]
+[connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]

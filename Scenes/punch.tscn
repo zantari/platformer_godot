@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch3qvqyi7jhei"]
+
+[ext_resource type="Script" uid="uid://doaj27n5r3i5i" path="res://Scenes/punch.gd" id="1_gaxiv"]
+[ext_resource type="Texture2D" uid="uid://beaj7tlom6hrv" path="res://graphics/player/attacksmoke.png" id="1_h8w4d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gaxiv"]
+radius = 9.0
+height = 20.0
+
+[node name="punch" type="Area2D"]
+collision_layer = 16
+collision_mask = 17
+script = ExtResource("1_gaxiv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_h8w4d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_gaxiv")
+
+[node name="durability" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="durability" to="." method="_on_durability_timeout"]

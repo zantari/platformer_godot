@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyd0pi2io2kd7"]
+
+[ext_resource type="Texture2D" uid="uid://du1tmv7oj5om5" path="res://graphics/Enemies/bee/1.png" id="1_1cg8v"]
+[ext_resource type="Script" uid="uid://blrocddutxk01" path="res://Scenes/bee.gd" id="1_iiy0m"]
+[ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_80wg3"]
+[ext_resource type="Texture2D" uid="uid://c5mfdiiid35yt" path="res://graphics/Enemies/bee/0.png" id="3_qxbm7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iiy0m"]
+radius = 3.0
+height = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2af24"]
+resource_local_to_scene = true
+shader = ExtResource("2_80wg3")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qxbm7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qxbm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1cg8v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bee" type="Area2D"]
+collision_layer = 4
+collision_mask = 19
+script = ExtResource("1_iiy0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_iiy0m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_2af24")
+sprite_frames = SubResource("SpriteFrames_qxbm7")
+autoplay = "default"
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -8.0
+offset_top = -10.0
+offset_right = 28.0
+offset_bottom = -4.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[node name="regin_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]
