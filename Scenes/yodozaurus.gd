@@ -3,7 +3,7 @@ extends Area2D
 var max_health = 2
 var health : float = max_health
 
-var attack_dmg = 4
+var attack_dmg = 7
 @export var marker1: Marker2D
 @export var marker2: Marker2D
 @onready var target = marker2
@@ -22,21 +22,35 @@ func _process(delta: float) -> void:
 	position += (target.position - position).normalized() * speed * delta
 
 func flip_logic():
-	$AnimatedSprite2D.flip_h = !forward
+	$AnimatedSprite2D.flip_h = forward
 	if position.distance_to(player.position)<notice_radius:
-		$AnimatedSprite2D.flip_h = position.x > player.position.x
+		$AnimatedSprite2D.flip_h = position.x < player.position.x
 	
 	
+var is_waiting = false 
+
 func get_target():
-	if forward and position.distance_to(marker2.position)<10 or\
-		not forward and position.distance_to(marker1.position)<10:
-		forward = !forward
-	if position.distance_to(player.position)<notice_radius:
-		target = player
-	elif forward:
+	if is_waiting: return 
+
+	var dist_to_player = position.distance_to(player.position)
+
+	if dist_to_player <= 4:
 		target = marker2
+		is_waiting = true
+		await get_tree().create_timer(0.5).timeout
+		
+		is_waiting = false
+		return 
+
+	
+	if forward and position.distance_to(marker2.position) < 10 or \
+	   not forward and position.distance_to(marker1.position) < 10:
+		forward = !forward
+
+	if dist_to_player < notice_radius:
+		target = player
 	else:
-		target = marker1
+		target = marker2 if forward else marker1
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.has_method("punch"):

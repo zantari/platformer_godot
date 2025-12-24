@@ -49,6 +49,7 @@ material = SubResource("ShaderMaterial_2af24")
 sprite_frames = SubResource("SpriteFrames_qxbm7")
 autoplay = "default"
 frame_progress = 0.8509271
+flip_h = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)

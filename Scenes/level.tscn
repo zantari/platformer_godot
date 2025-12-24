@@ -96,7 +96,7 @@ marker1 = NodePath("../../YodozaurusPathPoints/Marker2D")
 marker2 = NodePath("../../YodozaurusPathPoints/Marker2D2")
 
 [node name="Yodozaurus2" parent="Enemies" node_paths=PackedStringArray("marker1", "marker2") instance=ExtResource("3_6phgx")]
-position = Vector2(325, 348)
+position = Vector2(320, 353)
 marker1 = NodePath("../../YodozaurusPathPoints/upMarker1")
 marker2 = NodePath("../../YodozaurusPathPoints/upMarker2")
 
