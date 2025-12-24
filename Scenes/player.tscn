@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b616fb502buph"]
+[gd_scene load_steps=27 format=3 uid="uid://b616fb502buph"]
 
 [ext_resource type="Script" uid="uid://dli7v286u1hfi" path="res://Scenes/player.gd" id="1_cvnsp"]
 [ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_3smsa"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cudog6n220vma" path="res://graphics/bullet/fire.png" id="6_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://cluxjrgl72do0" path="res://graphics/player/walk.png" id="7_f1ek2"]
 [ext_resource type="Texture2D" uid="uid://beaj7tlom6hrv" path="res://graphics/player/attacksmoke.png" id="9_f1ek2"]
+[ext_resource type="Script" uid="uid://c67fw4vc5a6is" path="res://Scenes/camera.gd" id="9_gymyn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8erm5"]
 shader = ExtResource("2_3smsa")
@@ -152,24 +153,29 @@ material = SubResource("ShaderMaterial_8erm5")
 sprite_frames = SubResource("SpriteFrames_vgqql")
 animation = &"jump_gun"
 autoplay = "idle"
-frame_progress = 0.030083189
+frame_progress = 0.90402395
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_cvnsp")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="lvl1camera" type="Camera2D" parent="."]
 zoom = Vector2(6, 6)
-limit_left = 176
+limit_left = 80
 limit_right = 670
 limit_bottom = 639
 position_smoothing_enabled = true
 position_smoothing_speed = 13.0
+script = ExtResource("9_gymyn")
 
 [node name="Timers" type="Node" parent="."]
 
-[node name="CooldownTImer" type="Timer" parent="Timers"]
-wait_time = 0.33
+[node name="Cooldown_punch_timer" type="Timer" parent="Timers"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Cooldown_gun_timer" type="Timer" parent="Timers"]
+wait_time = 0.5
 one_shot = true
 
 [node name="FireTimer" type="Timer" parent="Timers"]
@@ -217,13 +223,23 @@ flip_h = true
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(0, 0.9137255, 0.24313726, 1)
 offset_left = -10.0
-offset_top = -12.0
+offset_top = -13.0
 offset_right = 28.0
-offset_bottom = -4.0
+offset_bottom = -5.0
 scale = Vector2(0.5, 0.5)
 show_percentage = false
 
-[connection signal="timeout" from="Timers/CooldownTImer" to="." method="_on_cooldown_t_imer_timeout"]
+[node name="CooldownBar" type="ProgressBar" parent="."]
+modulate = Color(0.7873402, 0.7485401, 0.7366042, 1)
+offset_left = -6.0
+offset_top = -9.0
+offset_right = 18.0
+offset_bottom = -5.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[connection signal="timeout" from="Timers/Cooldown_punch_timer" to="." method="_on_cooldown_punch_timer_timeout"]
+[connection signal="timeout" from="Timers/Cooldown_gun_timer" to="." method="_on_cooldown_gun_timer_timeout"]
 [connection signal="timeout" from="Timers/FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/invTimer" to="." method="_on_inv_timer_timeout"]

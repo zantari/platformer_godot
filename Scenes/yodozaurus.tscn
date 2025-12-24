@@ -1,38 +1,45 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyd0pi2io2kd7"]
+[gd_scene load_steps=9 format=3 uid="uid://cyd0pi2io2kd7"]
 
-[ext_resource type="Texture2D" uid="uid://du1tmv7oj5om5" path="res://graphics/Enemies/bee/1.png" id="1_1cg8v"]
-[ext_resource type="Script" uid="uid://blrocddutxk01" path="res://Scenes/bee.gd" id="1_iiy0m"]
-[ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_80wg3"]
-[ext_resource type="Texture2D" uid="uid://c5mfdiiid35yt" path="res://graphics/Enemies/bee/0.png" id="3_qxbm7"]
+[ext_resource type="Script" uid="uid://blrocddutxk01" path="res://Scenes/yodozaurus.gd" id="1_g8nyc"]
+[ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_p7lf2"]
+[ext_resource type="Texture2D" uid="uid://rb0hlknuvbyc" path="res://graphics/Enemies/yodozaur fly 16x1.png" id="3_n3jgf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iiy0m"]
-radius = 3.0
-height = 10.0
+radius = 8.0
+height = 16.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2af24"]
 resource_local_to_scene = true
-shader = ExtResource("2_80wg3")
+shader = ExtResource("2_p7lf2")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/amount = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no10n"]
+atlas = ExtResource("3_n3jgf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvk0i"]
+atlas = ExtResource("3_n3jgf")
+region = Rect2(17, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qxbm7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_qxbm7")
+"texture": SubResource("AtlasTexture_no10n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("1_1cg8v")
+"texture": SubResource("AtlasTexture_yvk0i")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 3.0
 }]
 
-[node name="Bee" type="Area2D"]
+[node name="Yodozaurus" type="Area2D"]
 collision_layer = 4
 collision_mask = 19
-script = ExtResource("1_iiy0m")
+script = ExtResource("1_g8nyc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_iiy0m")
@@ -41,6 +48,7 @@ shape = SubResource("CapsuleShape2D_iiy0m")
 material = SubResource("ShaderMaterial_2af24")
 sprite_frames = SubResource("SpriteFrames_qxbm7")
 autoplay = "default"
+frame_progress = 0.8509271
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)

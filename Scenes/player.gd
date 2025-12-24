@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
+var checkpoint :Vector2 = Vector2(277.0, 507.0)
 
-
+var cooldown = 0.1
 var direction_x = 0.0
 var facing_right = true
 var speed = 100
@@ -17,6 +18,9 @@ signal punch(pos: Vector2, direction)
 
 var health:int = max_health
 var vulnerable = true
+
+func _ready() -> void:
+	$CooldownBar.visible = false
  
 func _process(_delta: float) -> void:
 	update_health()
@@ -29,6 +33,33 @@ func _process(_delta: float) -> void:
 	velocity.x = direction_x * speed
 	
 	move_and_slide()
+	
+	
+	
+	if !$Timers/Cooldown_punch_timer.is_stopped():
+		var timer = $Timers/Cooldown_punch_timer
+		var coolDownBar = $CooldownBar
+		var left = $Timers/Cooldown_punch_timer.time_left
+		coolDownBar.visible = true
+		
+		
+		coolDownBar.max_value = timer.wait_time
+		coolDownBar.value = timer.time_left
+		
+		print("Zostało: ", snapped(left, 0.1), "s")
+		
+		
+	if !$Timers/Cooldown_gun_timer.is_stopped():
+		var timer = $Timers/Cooldown_gun_timer
+		var coolDownBar = $CooldownBar
+		var left = $Timers/Cooldown_gun_timer.time_left
+		coolDownBar.visible = true
+		
+		
+		coolDownBar.max_value = timer.wait_time
+		coolDownBar.value = timer.time_left
+		
+		print("Zostało: ", snapped(left, 0.1), "s")
 
 func get_input():
 	direction_x = Input.get_axis("left", "right")
@@ -40,7 +71,7 @@ func get_input():
 		if can_shoot and has_gun:
 			shoot.emit(global_position, facing_right)
 			can_shoot=false
-			$Timers/CooldownTImer.start()
+			$Timers/Cooldown_gun_timer.start()
 			$Timers/FireTimer.start()
 			$Fire.get_child(facing_right).show()
 		elif can_shoot and !has_gun and is_classic_attack == false:
@@ -48,7 +79,7 @@ func get_input():
 			is_classic_attack = true
 			$AnimatedSprite2D.play("basic_attack")
 			can_shoot=false
-			$Timers/CooldownTImer.start()
+			$Timers/Cooldown_punch_timer.start()
 			$Timers/FireTimer.start()
 			$Timers/AttackTimer.start()
 			$Attack.get_child(!facing_right).show()
@@ -82,7 +113,11 @@ func apply_gravity():
 	velocity.y+=10
 
 
-func _on_cooldown_t_imer_timeout() -> void:
+func _on_cooldown_punch_timer_timeout() -> void:
+	$CooldownBar.visible = false
+	can_shoot = true
+func _on_cooldown_gun_timer_timeout() -> void:
+	$CooldownBar.visible = false
 	can_shoot = true
 
 
@@ -125,7 +160,7 @@ func update_health():
 		healthbar.visible = true
 	if health<0:
 		health = max_health
-		position = Vector2(277.0, 507.0)
+		position = checkpoint
 
 func _on_regin_timer_timeout() -> void:
 	if health<=max_health:

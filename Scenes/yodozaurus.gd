@@ -69,6 +69,9 @@ func update_health():
 	else:
 		healthbar.visible = true
 
+
+
+
 func _on_regin_timer_timeout() -> void:
 	if health<=max_health:
 			health = health+0.5

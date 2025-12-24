@@ -21,3 +21,10 @@ func _on_player_punch(pos: Vector2, facing_right) -> void:
 	$".".add_child(punch)
 	punch.position = pos + Vector2(7 * direction, 0)
 	
+
+
+func _on_water_zone_body_entered(body: Node2D) -> void:
+	print("cos weszlo")
+	if 'get_damage' in body:
+		body.get_damage(1000)
+		
