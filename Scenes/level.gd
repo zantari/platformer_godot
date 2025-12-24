@@ -24,7 +24,14 @@ func _on_player_punch(pos: Vector2, facing_right) -> void:
 
 
 func _on_water_zone_body_entered(body: Node2D) -> void:
-	print("cos weszlo")
+	
 	if 'get_damage' in body:
 		body.get_damage(1000)
 		
+
+
+func _on_portal_body_entered(body: Node2D) -> void:
+	
+	if body.has_method("player"):	
+		
+		get_tree().change_scene_to_file("res://Scenes/won.tscn")

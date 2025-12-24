@@ -165,3 +165,6 @@ func update_health():
 func _on_regin_timer_timeout() -> void:
 	if health<=max_health:
 			health = health+healthPlus
+
+func player():
+	pass
