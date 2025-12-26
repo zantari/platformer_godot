@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyd0pi2io2kd7"]
+[gd_scene load_steps=12 format=3 uid="uid://cyd0pi2io2kd7"]
 
 [ext_resource type="Script" uid="uid://blrocddutxk01" path="res://Scenes/yodozaurus.gd" id="1_g8nyc"]
 [ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_p7lf2"]
 [ext_resource type="Texture2D" uid="uid://rb0hlknuvbyc" path="res://graphics/Enemies/yodozaur fly 16x1.png" id="3_n3jgf"]
+[ext_resource type="Texture2D" uid="uid://dl7graqnc1uyk" path="res://graphics/Enemies/bat 2x1.png" id="4_p7lf2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iiy0m"]
 radius = 8.0
@@ -22,6 +23,14 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("3_n3jgf")
 region = Rect2(17, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3jgf"]
+atlas = ExtResource("4_p7lf2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlgwt"]
+atlas = ExtResource("4_p7lf2")
+region = Rect2(17, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qxbm7"]
 animations = [{
 "frames": [{
@@ -34,6 +43,17 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3jgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlgwt")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
 [node name="Yodozaurus" type="Area2D"]
@@ -48,7 +68,7 @@ shape = SubResource("CapsuleShape2D_iiy0m")
 material = SubResource("ShaderMaterial_2af24")
 sprite_frames = SubResource("SpriteFrames_qxbm7")
 autoplay = "default"
-frame_progress = 0.8509271
+frame_progress = 0.13713385
 flip_h = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
