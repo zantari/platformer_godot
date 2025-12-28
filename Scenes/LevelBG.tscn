@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7fhwo1saxdh8"]
+
+[ext_resource type="PackedScene" uid="uid://caer6tm0mas4x" path="res://Scenes/level.tscn" id="1_bb7ed"]
+
+[node name="LevelBG" type="Node"]
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+offset_left = -4014.0
+offset_top = -2429.0
+offset_right = 7487.0
+offset_bottom = 4822.0
+color = Color(0.4103575, 0.6696989, 0.68083316, 1)
+
+[node name="Level" parent="." instance=ExtResource("1_bb7ed")]

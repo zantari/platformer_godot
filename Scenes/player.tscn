@@ -1,0 +1,247 @@
+[gd_scene load_steps=27 format=3 uid="uid://b616fb502buph"]
+
+[ext_resource type="Script" uid="uid://dli7v286u1hfi" path="res://Scenes/player.gd" id="1_cvnsp"]
+[ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_3smsa"]
+[ext_resource type="Texture2D" uid="uid://croy2x7x1tlao" path="res://graphics/player/attack.png" id="3_8erm5"]
+[ext_resource type="Texture2D" uid="uid://xxtwb48oh7ns" path="res://graphics/player/gun/idle.png" id="3_fkybt"]
+[ext_resource type="Texture2D" uid="uid://ux8a152o7vw8" path="res://graphics/player/jump.png" id="5_8erm5"]
+[ext_resource type="Texture2D" uid="uid://bax587cfjikya" path="res://graphics/player/gun/walk.png" id="5_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://bwgxq0e6k02wp" path="res://graphics/player/gun/jump.png" id="6_tx1dd"]
+[ext_resource type="Texture2D" uid="uid://cudog6n220vma" path="res://graphics/bullet/fire.png" id="6_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://cluxjrgl72do0" path="res://graphics/player/walk.png" id="7_f1ek2"]
+[ext_resource type="Texture2D" uid="uid://beaj7tlom6hrv" path="res://graphics/player/attacksmoke.png" id="9_f1ek2"]
+[ext_resource type="Script" uid="uid://c67fw4vc5a6is" path="res://Scenes/camera.gd" id="9_gymyn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8erm5"]
+resource_local_to_scene = true
+shader = ExtResource("2_3smsa")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dp3o"]
+atlas = ExtResource("3_8erm5")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
+atlas = ExtResource("3_8erm5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4iuc"]
+atlas = ExtResource("3_fkybt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd4e3"]
+atlas = ExtResource("3_fkybt")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
+atlas = ExtResource("5_8erm5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
+atlas = ExtResource("5_8erm5")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
+atlas = ExtResource("6_tx1dd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igrcy"]
+atlas = ExtResource("6_tx1dd")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
+atlas = ExtResource("7_f1ek2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
+atlas = ExtResource("7_f1ek2")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs7ks"]
+atlas = ExtResource("5_x3wgy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6n3p"]
+atlas = ExtResource("5_x3wgy")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vgqql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dp3o")
+}],
+"loop": true,
+"name": &"basic_attack",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx1dd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4iuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fd4e3")
+}],
+"loop": true,
+"name": &"idle_gun",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ek2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukyrk")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqcod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igrcy")
+}],
+"loop": true,
+"name": &"jump_gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gymyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu2lt")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs7ks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6n3p")
+}],
+"loop": true,
+"name": &"walk_gun",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
+radius = 4.0
+height = 14.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 45
+script = ExtResource("1_cvnsp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_8erm5")
+sprite_frames = SubResource("SpriteFrames_vgqql")
+animation = &"jump_gun"
+autoplay = "idle"
+frame_progress = 0.90402395
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_cvnsp")
+
+[node name="lvl1camera" type="Camera2D" parent="."]
+zoom = Vector2(6, 6)
+limit_left = 80
+limit_right = 2464
+limit_bottom = 639
+position_smoothing_enabled = true
+position_smoothing_speed = 13.0
+script = ExtResource("9_gymyn")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Cooldown_punch_timer" type="Timer" parent="Timers"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Cooldown_gun_timer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="FireTimer" type="Timer" parent="Timers"]
+wait_time = 0.11
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="Timers"]
+wait_time = 0.4
+one_shot = true
+
+[node name="invTimer" type="Timer" parent="Timers"]
+wait_time = 0.6
+one_shot = true
+
+[node name="regin_timer" type="Timer" parent="Timers"]
+wait_time = 1.5
+autostart = true
+
+[node name="Fire" type="Node2D" parent="."]
+
+[node name="FireLeft" type="Sprite2D" parent="Fire"]
+visible = false
+position = Vector2(-10.5, 1)
+texture = ExtResource("6_x3wgy")
+flip_h = true
+
+[node name="FireRight" type="Sprite2D" parent="Fire"]
+visible = false
+position = Vector2(10.5, 1)
+texture = ExtResource("6_x3wgy")
+
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="AttackRight" type="Sprite2D" parent="Attack"]
+visible = false
+position = Vector2(12, 0)
+texture = ExtResource("9_f1ek2")
+
+[node name="AttackLeft" type="Sprite2D" parent="Attack"]
+visible = false
+position = Vector2(-12, 0)
+texture = ExtResource("9_f1ek2")
+flip_h = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(0, 0.9137255, 0.24313726, 1)
+offset_left = -10.0
+offset_top = -13.0
+offset_right = 28.0
+offset_bottom = -5.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[node name="CooldownBar" type="ProgressBar" parent="."]
+modulate = Color(0.7873402, 0.7485401, 0.7366042, 1)
+offset_left = -6.0
+offset_top = -9.0
+offset_right = 18.0
+offset_bottom = -5.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[connection signal="timeout" from="Timers/Cooldown_punch_timer" to="." method="_on_cooldown_punch_timer_timeout"]
+[connection signal="timeout" from="Timers/Cooldown_gun_timer" to="." method="_on_cooldown_gun_timer_timeout"]
+[connection signal="timeout" from="Timers/FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Timers/invTimer" to="." method="_on_inv_timer_timeout"]
+[connection signal="timeout" from="Timers/regin_timer" to="." method="_on_regin_timer_timeout"]

@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyd0pi2io2kd7"]
+
+[ext_resource type="Script" uid="uid://blrocddutxk01" path="res://Scenes/yodozaurus.gd" id="1_g8nyc"]
+[ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_p7lf2"]
+[ext_resource type="Texture2D" uid="uid://rb0hlknuvbyc" path="res://graphics/Enemies/yodozaur fly 16x1.png" id="3_n3jgf"]
+[ext_resource type="Texture2D" uid="uid://dl7graqnc1uyk" path="res://graphics/Enemies/bat 2x1.png" id="4_p7lf2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iiy0m"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2af24"]
+resource_local_to_scene = true
+shader = ExtResource("2_p7lf2")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no10n"]
+atlas = ExtResource("3_n3jgf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvk0i"]
+atlas = ExtResource("3_n3jgf")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3jgf"]
+atlas = ExtResource("4_p7lf2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlgwt"]
+atlas = ExtResource("4_p7lf2")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qxbm7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no10n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvk0i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3jgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlgwt")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Yodozaurus" type="Area2D"]
+collision_layer = 4
+collision_mask = 19
+script = ExtResource("1_g8nyc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_iiy0m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_2af24")
+sprite_frames = SubResource("SpriteFrames_qxbm7")
+autoplay = "default"
+frame_progress = 0.13713385
+flip_h = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -8.0
+offset_top = -10.0
+offset_right = 28.0
+offset_bottom = -4.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[node name="regin_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]
