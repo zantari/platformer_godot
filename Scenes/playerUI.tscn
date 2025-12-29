@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb4ifws2npqtd"]
+
+[ext_resource type="Script" uid="uid://c705mpbl6ab0f" path="res://Scenes/player_ui.gd" id="1_0inay"]
+[ext_resource type="Texture2D" uid="uid://c4q7lwrhfqa55" path="res://graphics/coin/coin.png" id="1_7cjdo"]
+[ext_resource type="FontFile" uid="uid://behc35tk1bwq2" path="res://fonts/basis33/basis33.ttf" id="2_0inay"]
+[ext_resource type="Texture2D" uid="uid://c65n8uo3884ug" path="res://assets/skull.png" id="4_332l4"]
+
+[node name="Control" type="Control" groups=["UI"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0inay")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -52.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.56078434, 1)
+theme_override_fonts/font = ExtResource("2_0inay")
+theme_override_font_sizes/font_size = 85
+text = "00"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/HBoxContainer/Label"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 0
+offset_left = -142.0
+offset_top = 6.0
+offset_right = 58.0
+offset_bottom = 111.0
+size_flags_vertical = 4
+texture = ExtResource("1_7cjdo")
+expand_mode = 3
+stretch_mode = 5
+flip_v = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.19607843, 0.35686275, 0.92941177, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_0inay")
+theme_override_font_sizes/font_size = 85
+text = "Level: "
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 94.0
+offset_bottom = 106.0
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer3"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_0inay")
+theme_override_font_sizes/font_size = 85
+text = "00"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer3/HBoxContainer/Label"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 0
+offset_left = -164.0
+offset_top = -32.0
+offset_right = 36.0
+offset_bottom = 73.0
+size_flags_vertical = 4
+texture = ExtResource("4_332l4")
+expand_mode = 3
+stretch_mode = 5

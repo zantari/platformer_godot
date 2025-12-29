@@ -1,5 +1,9 @@
 extends Node2D
 var levels = ["res://Scenes/level_1.tscn", "res://Scenes/LevelBG.tscn"]
+func _ready() -> void:
+	get_tree().call_group('UI', 'setPoints', PlayerData.getMoney())
+	
+	get_tree().call_group('UI', 'setCurrLevel', PlayerData.getLevel()+1)
 
 func transition(body, level):
 	body.set_physics_process(false)

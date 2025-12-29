@@ -160,6 +160,8 @@ func update_health():
 	else:
 		healthbar.visible = true
 	if health<0:
+		get_tree().call_group('UI', 'add_death')
+		
 		health = max_health
 		position = checkpoint
 

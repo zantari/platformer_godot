@@ -3,6 +3,8 @@ extends Node2D
 const bullet_scene: PackedScene = preload("res://Scenes/bullet.tscn")
 const punch_scene: PackedScene = preload("res://Scenes/punch.tscn")
 
+func _ready() -> void:
+	get_tree().call_group('UI', 'setCurrLevel', 2)
 
 func _on_player_shoot(pos: Vector2, facing_right) -> void:
 	print("gracz strzelil stzaleme")
@@ -53,4 +55,6 @@ func _on_portal_body_entered(body: Node2D) -> void:
 		tween.tween_property(body, "modulate:a", 0.0, duration)
 
 		await tween.finished
+		if PlayerData.getLevel()<2:
+			PlayerData.addLevel()
 		get_tree().change_scene_to_file("res://Scenes/won.tscn")
