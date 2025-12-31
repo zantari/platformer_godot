@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfo18xkj4wu0k"]
+[gd_scene load_steps=19 format=3 uid="uid://dfo18xkj4wu0k"]
 
 [ext_resource type="Texture2D" uid="uid://jmbj0lqu6g4v" path="res://graphics/Tilemaps/bridge tilemap.png" id="1_hwspg"]
 [ext_resource type="Texture2D" uid="uid://dt1mgx7ocga0w" path="res://graphics/Tilemaps/tilemap.png" id="2_hatku"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cyd0pi2io2kd7" path="res://Scenes/yodozaurus.tscn" id="5_qpigt"]
 [ext_resource type="PackedScene" uid="uid://c8jetajretcys" path="res://Scenes/slime.tscn" id="6_hrgga"]
 [ext_resource type="PackedScene" uid="uid://nwugx1beroqo" path="res://Scenes/coin.tscn" id="7_qpigt"]
+[ext_resource type="PackedScene" uid="uid://kiak6bmaoyx" path="res://Scenes/checkpoint.tscn" id="7_w7ydg"]
+[ext_resource type="PackedScene" uid="uid://b616fb502buph" path="res://Scenes/player.tscn" id="8_hrgga"]
+[ext_resource type="PackedScene" uid="uid://gd6q6e3o074d" path="res://Scenes/gun.tscn" id="10_6q4h7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7ydg"]
 texture = ExtResource("1_hwspg")
@@ -112,6 +115,9 @@ physics_layer_0/collision_mask = 3
 sources/1 = SubResource("TileSetAtlasSource_3p61d")
 sources/0 = SubResource("TileSetAtlasSource_g4s4g")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7ydg"]
+size = Vector2(217, 193)
+
 [node name="LevelTree" type="Node2D"]
 
 [node name="Terrain" type="TileMapLayer" parent="."]
@@ -137,9 +143,26 @@ position = Vector2(32, 27)
 
 [node name="killZones" type="Node2D" parent="."]
 
+[node name="killZOne" type="Area2D" parent="killZones"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="killHitbox" type="CollisionShape2D" parent="killZones/killZOne"]
+position = Vector2(357, 33)
+shape = SubResource("RectangleShape2D_w7ydg")
+
 [node name="CheckPoints" type="Node2D" parent="."]
+
+[node name="Checkpoint1" parent="CheckPoints" instance=ExtResource("7_w7ydg")]
+position = Vector2(152, 331)
 
 [node name="Coins" type="Node2D" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource("7_qpigt")]
 position = Vector2(85, -9)
+
+[node name="Player" parent="." instance=ExtResource("8_hrgga")]
+position = Vector2(205, 372)
+
+[node name="Gun" parent="." instance=ExtResource("10_6q4h7")]
+position = Vector2(149, -7)

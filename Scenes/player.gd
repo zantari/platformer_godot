@@ -46,7 +46,7 @@ func _process(_delta: float) -> void:
 		coolDownBar.max_value = timer.wait_time
 		coolDownBar.value = timer.time_left
 		
-		print("Zostało: ", snapped(left, 0.1), "s")
+		
 		
 		
 	if !$Timers/Cooldown_gun_timer.is_stopped():
@@ -59,7 +59,7 @@ func _process(_delta: float) -> void:
 		coolDownBar.max_value = timer.wait_time
 		coolDownBar.value = timer.time_left
 		
-		print("Zostało: ", snapped(left, 0.1), "s")
+		
 
 func get_input():
 	direction_x = Input.get_axis("left", "right")
@@ -76,7 +76,7 @@ func get_input():
 			$Fire.get_child(facing_right).show()
 		elif can_shoot and !has_gun and is_classic_attack == false:
 			punch.emit(global_position, facing_right)
-			print("emitowano")
+			
 			is_classic_attack = true
 			$AnimatedSprite2D.play("basic_attack")
 			can_shoot=false
@@ -132,7 +132,7 @@ func _on_fire_timer_timeout() -> void:
 		
 
 func get_damage(dmg):
-	print(health)
+	
 	if vulnerable:
 		health -= dmg
 		var tween = create_tween()

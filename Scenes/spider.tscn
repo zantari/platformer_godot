@@ -55,7 +55,7 @@ material = SubResource("ShaderMaterial_b7lw1")
 position = Vector2(1, -4)
 sprite_frames = SubResource("SpriteFrames_x1856")
 autoplay = "default"
-frame_progress = 0.5273111
+frame_progress = 0.49533594
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -88,13 +88,8 @@ offset_bottom = -4.0
 scale = Vector2(0.5, 0.5)
 show_percentage = false
 
-[node name="regin_timer" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
-
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="BorderArea2D" to="." method="_on_border_area_2d_body_entered"]
 [connection signal="body_exited" from="RightCliffArea" to="." method="_on_right_cliff_area_body_exited"]
 [connection signal="body_exited" from="LeftCliffArea" to="." method="_on_left_cliff_area_body_exited"]
-[connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]

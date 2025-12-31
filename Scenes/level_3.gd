@@ -3,7 +3,7 @@ const bullet_scene: PackedScene = preload("res://Scenes/bullet.tscn")
 const punch_scene: PackedScene = preload("res://Scenes/punch.tscn")
 
 func _ready() -> void:
-	get_tree().call_group('UI', 'setCurrLevel', 1)
+	get_tree().call_group('UI', 'setCurrLevel', 3)
 
 func _on_player_shoot(pos: Vector2, facing_right) -> void:
 	
@@ -47,16 +47,17 @@ func _on_portal_body_entered(body: Node2D) -> void:
 		var random_rot = deg_to_rad(randf_range(360, 1200) * [-1, 1].pick_random())
 		tween.tween_property(body, "rotation", random_rot, duration)
 		
-		# Reszta standardowo
+		
 		tween.tween_property(body, "scale", Vector2.ZERO, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		tween.tween_property(body, "modulate:a", 0.0, duration)
 
 		await tween.finished
-		if PlayerData.getLevel()<1:
+		if PlayerData.getLevel()<2:
 			PlayerData.addLevel()
 		get_tree().change_scene_to_file("res://Scenes/won.tscn")
 
 
 func _on_kill_z_one_body_entered(body: Node2D) -> void:
 	if 'get_damage' in body:
+		
 		body.get_damage(1000)

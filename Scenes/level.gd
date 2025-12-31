@@ -7,7 +7,7 @@ func _ready() -> void:
 	get_tree().call_group('UI', 'setCurrLevel', 2)
 
 func _on_player_shoot(pos: Vector2, facing_right) -> void:
-	print("gracz strzelil stzaleme")
+	
 	var bullet = bullet_scene.instantiate()
 	var direction = 1 if facing_right else -1
 	bullet.direction = direction
