@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://4as1l6rbxi7y"]
+
+[ext_resource type="Script" uid="uid://b5sru248cj6wg" path="res://Scenes/fireball.gd" id="1_0mxqg"]
+[ext_resource type="Texture2D" uid="uid://hak74cgc7lpg" path="res://graphics/bullet/fireball.png" id="1_xi7wk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0mxqg"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="CurveTexture" id="CurveTexture_xi7wk"]
+
+[sub_resource type="Gradient" id="Gradient_0mxqg"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ne4qj"]
+gradient = SubResource("Gradient_0mxqg")
+
+[sub_resource type="Gradient" id="Gradient_hcgvv"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cpagb"]
+gradient = SubResource("Gradient_hcgvv")
+width = 248
+
+[sub_resource type="CurveTexture" id="CurveTexture_h3yyx"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ne4qj"]
+lifetime_randomness = 0.22
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 3.64
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(600, 98, 0)
+color = Color(0.93714404, 0.2774949, 0.06955966, 1)
+color_ramp = SubResource("GradientTexture1D_cpagb")
+color_initial_ramp = SubResource("GradientTexture1D_ne4qj")
+alpha_curve = SubResource("CurveTexture_xi7wk")
+emission_curve = SubResource("CurveTexture_h3yyx")
+turbulence_enabled = true
+
+[node name="fireball" type="Area2D"]
+collision_layer = 64
+collision_mask = 82
+script = ExtResource("1_0mxqg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -1)
+shape = SubResource("CapsuleShape2D_0mxqg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xi7wk")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(4, -1)
+lifetime = 0.45
+collision_base_size = 35.8
+process_material = SubResource("ParticleProcessMaterial_ne4qj")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

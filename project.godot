@@ -58,6 +58,7 @@ shoot={
 2d_physics/layer_4="Items"
 2d_physics/layer_5="Bullets"
 2d_physics/layer_6="CheckPoints"
+2d_physics/layer_7="fireballs"
 2d_physics/main_scene="uid://b7fhwo1saxdh8"
 
 [rendering]

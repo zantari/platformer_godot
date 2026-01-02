@@ -9,7 +9,7 @@ var speed = 100
 var jump_height = -300
 var can_shoot = true
 var healthPlus = 3
-var max_health = 20
+var max_health = 20 #20
 var has_gun = false
 var is_classic_attack=false
 

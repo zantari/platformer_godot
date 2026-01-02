@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://ddinr135ayh0k"]
+[gd_scene load_steps=17 format=4 uid="uid://ddinr135ayh0k"]
 
 [ext_resource type="Texture2D" uid="uid://brymdaub55qqe" path="res://graphics/Tilemaps/hometm.png" id="1_d3k6i"]
 [ext_resource type="Script" uid="uid://b62t4i4gl331" path="res://Scenes/won.gd" id="1_d780e"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b616fb502buph" path="res://Scenes/player.tscn" id="3_d780e"]
 [ext_resource type="Texture2D" uid="uid://cr5pgcxkpw7qt" path="res://graphics/portals/sztaluga.png" id="4_jif8x"]
 [ext_resource type="Texture2D" uid="uid://wdjcktt32gp5" path="res://graphics/portals/sztaluga2.png" id="5_3eqmr"]
+[ext_resource type="FontFile" uid="uid://behc35tk1bwq2" path="res://fonts/basis33/basis33.ttf" id="5_atlfn"]
 [ext_resource type="Texture2D" uid="uid://dmo4hlytb6gfo" path="res://graphics/portals/sztaluga3.png" id="6_0wrid"]
+[ext_resource type="Texture2D" uid="uid://dkbyi1ryi4ywk" path="res://graphics/portals/sztaluga4.png" id="8_cxex2"]
+[ext_resource type="Texture2D" uid="uid://ddlih3kbh4xnl" path="res://graphics/portals/sztaluga5.png" id="9_cxex2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jif8x"]
 texture = ExtResource("1_d3k6i")
@@ -89,6 +92,19 @@ texture = ExtResource("4_jif8x")
 position = Vector2(457, 96.75)
 shape = SubResource("RectangleShape2D_jif8x")
 
+[node name="Label" type="Label" parent="Level1"]
+texture_filter = 1
+offset_left = 445.0
+offset_top = 114.0
+offset_right = 493.0
+offset_bottom = 130.88235
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("5_atlfn")
+theme_override_font_sizes/font_size = 16
+text = "💀"
+
 [node name="Level2" type="Area2D" parent="."]
 position = Vector2(-9, 0)
 collision_layer = 32
@@ -101,6 +117,19 @@ texture = ExtResource("5_3eqmr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level2"]
 position = Vector2(457, 97)
 shape = SubResource("RectangleShape2D_jif8x")
+
+[node name="Label" type="Label" parent="Level2"]
+texture_filter = 1
+offset_left = 445.0
+offset_top = 114.0
+offset_right = 493.0
+offset_bottom = 130.88235
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("5_atlfn")
+theme_override_font_sizes/font_size = 16
+text = "💀💀"
 
 [node name="Level3" type="Area2D" parent="."]
 position = Vector2(106, 1)
@@ -115,9 +144,77 @@ texture = ExtResource("6_0wrid")
 position = Vector2(457, 97)
 shape = SubResource("RectangleShape2D_jif8x")
 
+[node name="Label" type="Label" parent="Level3"]
+texture_filter = 1
+offset_left = 445.0
+offset_top = 114.0
+offset_right = 493.0
+offset_bottom = 130.88235
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("5_atlfn")
+theme_override_font_sizes/font_size = 16
+text = "💀💀"
+
+[node name="Level4" type="Area2D" parent="."]
+position = Vector2(221, 1)
+collision_layer = 32
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Level4"]
+position = Vector2(457, 109)
+texture = ExtResource("8_cxex2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level4"]
+position = Vector2(457, 97)
+shape = SubResource("RectangleShape2D_jif8x")
+
+[node name="Label" type="Label" parent="Level4"]
+texture_filter = 1
+offset_left = 445.0
+offset_top = 114.0
+offset_right = 493.0
+offset_bottom = 130.88235
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("5_atlfn")
+theme_override_font_sizes/font_size = 16
+text = "💀💀💀"
+
+[node name="Level5" type="Area2D" parent="."]
+position = Vector2(335, 1)
+collision_layer = 32
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Level5"]
+position = Vector2(457, 107)
+texture = ExtResource("9_cxex2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level5"]
+position = Vector2(457, 97)
+shape = SubResource("RectangleShape2D_jif8x")
+
+[node name="Label" type="Label" parent="Level5"]
+texture_filter = 1
+offset_left = 445.0
+offset_top = 114.0
+offset_right = 493.0
+offset_bottom = 130.88235
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("5_atlfn")
+theme_override_font_sizes/font_size = 16
+text = "💀☠️💀"
+metadata/_edit_use_anchors_ = true
+
 [node name="Player" parent="." instance=ExtResource("3_d780e")]
-position = Vector2(352, 119)
+position = Vector2(369, 112)
 
 [connection signal="body_entered" from="Level1" to="." method="_on_level_1_body_entered"]
 [connection signal="body_entered" from="Level2" to="." method="_on_level_2_body_entered"]
 [connection signal="body_entered" from="Level3" to="." method="_on_level_3_body_entered"]
+[connection signal="body_entered" from="Level4" to="." method="_on_level_4_body_entered"]
+[connection signal="body_entered" from="Level5" to="." method="_on_level_4_body_entered"]

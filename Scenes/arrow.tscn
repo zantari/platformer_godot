@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7uu8dag2fcal"]
+
+[ext_resource type="Script" uid="uid://rsnbvykawamx" path="res://arrow.gd" id="1_h5x2m"]
+[ext_resource type="Texture2D" uid="uid://d3ir3rslb0du7" path="res://graphics/bullet/arrow.png" id="2_h5x2m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xxsqv"]
+radius = 1.4998151
+height = 14.013982
+
+[sub_resource type="Gradient" id="Gradient_yjaco"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ne4qj"]
+gradient = SubResource("Gradient_yjaco")
+
+[sub_resource type="Gradient" id="Gradient_c32fr"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cpagb"]
+gradient = SubResource("Gradient_c32fr")
+width = 248
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pu778"]
+lifetime_randomness = 0.09
+particle_flag_disable_z = true
+emission_shape = 5
+emission_point_count = 1
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(600, 98, 0)
+color = Color(0.5685786, 0.54959744, 0.41372064, 1)
+color_ramp = SubResource("GradientTexture1D_cpagb")
+color_initial_ramp = SubResource("GradientTexture1D_ne4qj")
+turbulence_enabled = true
+
+[node name="arrow" type="Area2D"]
+collision_layer = 64
+collision_mask = 87
+script = ExtResource("1_h5x2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.0000001, 5.9604645e-08)
+rotation = 1.5865043
+shape = SubResource("CapsuleShape2D_xxsqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_h5x2m")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(4, 0)
+amount = 9
+amount_ratio = 0.3981
+lifetime = 0.16
+randomness = 0.02
+fixed_fps = 27
+collision_base_size = 18.64
+process_material = SubResource("ParticleProcessMaterial_pu778")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

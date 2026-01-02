@@ -62,3 +62,7 @@ func update_health():
 func _on_regin_timer_timeout() -> void:
 	if health<=max_health:
 			health = health+0.1
+			
+			
+func get_dmg(dmg):
+	health = health-(dmg/10)

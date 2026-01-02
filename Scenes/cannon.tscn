@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://doo83aoa6melo"]
+
+[ext_resource type="Script" uid="uid://b5utmcrv3c5qd" path="res://cannon.gd" id="1_qlvt6"]
+[ext_resource type="Texture2D" uid="uid://k5st4dipyqd4" path="res://assets/cannon.png" id="2_3uv2y"]
+[ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_ognwi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_360ba"]
+resource_local_to_scene = true
+shader = ExtResource("2_ognwi")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ognwi"]
+size = Vector2(13, 6)
+
+[node name="Cannon" type="Area2D"]
+collision_layer = 4
+collision_mask = 18
+script = ExtResource("1_qlvt6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_360ba")
+position = Vector2(-1, -5)
+texture = ExtResource("2_3uv2y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ognwi")
+
+[node name="Fireball_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="CooldownBar" type="ProgressBar" parent="."]
+modulate = Color(0.7873402, 0.7485401, 0.7366042, 1)
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 19.0
+offset_bottom = -2.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -7.0
+offset_top = -10.0
+offset_right = 25.0
+offset_bottom = -4.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Fireball_timer" to="." method="_on_fireball_timer_timeout"]
