@@ -31,7 +31,12 @@ func _process(delta: float) -> void:
 		$CanvasLayer/MarginContainer/HBoxContainer/Label.text = "0"+str(currentPoints)
 	
 
-
 func _on_button_pressed() -> void:
-	print("s")
+	$CanvasLayer/Button.release_focus() # TO WYWALA FOCUS Z PRZYCISKU
+	
 	get_tree().call_group("Player", "kill")
+	$CanvasLayer/Button.disabled = true
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	$CanvasLayer/Button.disabled  = false
