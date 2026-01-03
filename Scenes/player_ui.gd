@@ -30,3 +30,8 @@ func _process(delta: float) -> void:
 	else:
 		$CanvasLayer/MarginContainer/HBoxContainer/Label.text = "0"+str(currentPoints)
 	
+
+
+func _on_button_pressed() -> void:
+	print("s")
+	get_tree().call_group("Player", "kill")

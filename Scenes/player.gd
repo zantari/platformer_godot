@@ -18,21 +18,28 @@ signal punch(pos: Vector2, direction)
 
 var health:int = max_health
 var vulnerable = true
-
+func kill():
+	health -= 100000
 func _ready() -> void:
 	$CooldownBar.visible = false
  
+
+func _physics_process(delta: float) -> void:
+	apply_gravity(delta)
+	velocity.x = direction_x * speed
+	velocity.x = direction_x * speed
+	move_and_slide()
 func _process(_delta: float) -> void:
 	update_health()
 	get_input()
-	apply_gravity()
+	
 	get_facing_direction()
 	get_animation()
 
 	
-	velocity.x = direction_x * speed
 	
-	move_and_slide()
+	
+	
 	
 	
 	
@@ -114,8 +121,9 @@ func get_animation():
 	$AnimatedSprite2D.animation = animation
 	$AnimatedSprite2D.flip_h = !facing_right
 
-func apply_gravity():
-	velocity.y+=10
+func apply_gravity(delta):
+	
+	velocity.y += 930 * delta
 
 
 func _on_cooldown_punch_timer_timeout() -> void:
