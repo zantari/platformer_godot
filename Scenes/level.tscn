@@ -240,7 +240,7 @@ position = Vector2(869, 412)
 position = Vector2(822, 428)
 
 [node name="Slime" parent="Enemies" instance=ExtResource("6_8c0lf")]
-position = Vector2(397, 520)
+position = Vector2(408, 520)
 
 [node name="Slime2" parent="Enemies" instance=ExtResource("6_8c0lf")]
 position = Vector2(590, 488)
@@ -359,7 +359,7 @@ collision_layer = 32
 collision_mask = 2
 
 [node name="Player" parent="." instance=ExtResource("2_k5f4k")]
-position = Vector2(271, 470)
+position = Vector2(284, 495)
 
 [node name="Coins" type="Node2D" parent="."]
 

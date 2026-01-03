@@ -6,6 +6,7 @@ var health : float = max_health
 var direction_x:int = 1
 var speed:int = 30 
 var attack_power = 10
+var can_play_sound = true
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.has_method("punch"):
@@ -22,7 +23,14 @@ func _process(delta: float) -> void:
 	update_health()
 	check_death()
 	if $AnimatedSprite2D.frame == 3:
+		if not $AudioStreamPlayer2D.playing and can_play_sound:
+			can_play_sound = false
+			$AudioStreamPlayer2D.play()
 		position.x += speed * direction_x * delta
+	else:
+		can_play_sound = true
+	
+			
 	
 func check_death():
 	if health<=0:

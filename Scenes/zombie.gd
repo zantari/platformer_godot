@@ -66,3 +66,7 @@ func _on_regin_timer_timeout() -> void:
 			
 func get_dmg(dmg):
 	health = health-(dmg/10)
+
+
+func _on_playsound_timeout() -> void:
+	$AudioStreamPlayer2D.play()

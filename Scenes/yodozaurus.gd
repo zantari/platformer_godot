@@ -11,10 +11,21 @@ var attack_dmg = 7
 var speed = 35
 var forward := true
 var notice_radius = 80
+var last_frame: int = -1
 func _ready():
 	pass
 
 func _process(delta: float) -> void:
+	var current_frame = $AnimatedSprite2D.frame
+	
+	if current_frame != last_frame: 
+		if current_frame == 0:
+			if not $AudioStreamPlayer2D.playing:
+				$AudioStreamPlayer2D.play()
+		elif current_frame == 1:
+			if not $AudioStreamPlayer2D2.playing:
+				$AudioStreamPlayer2D2.play()
+		last_frame = current_frame #
 	update_health()
 	check_death()
 	get_target()

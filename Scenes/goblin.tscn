@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0kgf7r32ovc2"]
+[gd_scene load_steps=20 format=3 uid="uid://b0kgf7r32ovc2"]
 
 [ext_resource type="Script" uid="uid://dlgdkb6jl6hdu" path="res://Scenes/goblin.gd" id="1_gbw3e"]
 [ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_fkbyy"]
 [ext_resource type="Texture2D" uid="uid://dntlr7uiqbdx6" path="res://graphics/Enemies/goblin shoot 2x1.png" id="3_2gt0r"]
 [ext_resource type="Texture2D" uid="uid://daqlkf0wxgg8i" path="res://graphics/Enemies/goblin stand 2x1.png" id="4_o6mmh"]
 [ext_resource type="Texture2D" uid="uid://c4jkwt1y84s4d" path="res://graphics/Enemies/goblin walk 2x1.png" id="5_ep384"]
+[ext_resource type="AudioStream" uid="uid://c8uxchesqnsv1" path="res://assets/sounds/arrow-twang_01-306041.mp3" id="6_fkbyy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ajbjq"]
 resource_local_to_scene = true
@@ -155,6 +156,12 @@ offset_right = 19.0
 offset_bottom = -8.0
 scale = Vector2(0.5, 0.5)
 show_percentage = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_fkbyy")
+volume_db = 1.909
+pitch_scale = 1.04
+max_distance = 500.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

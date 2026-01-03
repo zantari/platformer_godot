@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b616fb502buph"]
+[gd_scene load_steps=32 format=3 uid="uid://b616fb502buph"]
 
 [ext_resource type="Script" uid="uid://dli7v286u1hfi" path="res://Scenes/player.gd" id="1_cvnsp"]
 [ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_3smsa"]
@@ -12,6 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://beaj7tlom6hrv" path="res://graphics/player/attacksmoke.png" id="9_f1ek2"]
 [ext_resource type="Script" uid="uid://c67fw4vc5a6is" path="res://Scenes/camera.gd" id="9_gymyn"]
 [ext_resource type="PackedScene" uid="uid://cb4ifws2npqtd" path="res://Scenes/playerUI.tscn" id="12_pu2lt"]
+[ext_resource type="AudioStream" uid="uid://bfqstbulgv4s" path="res://assets/sounds/punch-41105.mp3" id="13_fd4e3"]
+[ext_resource type="AudioStream" uid="uid://cgq3f0kdbb8xl" path="res://assets/sounds/laser-gun-81720.mp3" id="14_qqcod"]
+[ext_resource type="AudioStream" uid="uid://dku4vdys0c13e" path="res://assets/sounds/pixel-sound-effect-4-82881.mp3" id="15_igrcy"]
+[ext_resource type="AudioStream" uid="uid://2e8dx5w5bxh6" path="res://assets/sounds/Minecraft Damage (Oof) - QuickSounds.com.mp3" id="16_fs7ks"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8erm5"]
 resource_local_to_scene = true
@@ -241,6 +245,25 @@ scale = Vector2(0.5, 0.5)
 show_percentage = false
 
 [node name="Control" parent="." instance=ExtResource("12_pu2lt")]
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="punch" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("13_fd4e3")
+pitch_scale = 1.11
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("14_qqcod")
+volume_db = -2.862
+pitch_scale = 1.22
+
+[node name="jump" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("15_igrcy")
+pitch_scale = 1.6
+
+[node name="dmg_get" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("16_fs7ks")
+pitch_scale = 2.08
 
 [connection signal="timeout" from="Timers/Cooldown_punch_timer" to="." method="_on_cooldown_punch_timer_timeout"]
 [connection signal="timeout" from="Timers/Cooldown_gun_timer" to="." method="_on_cooldown_gun_timer_timeout"]

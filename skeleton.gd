@@ -7,15 +7,18 @@ var speed:int = 30
 
 
 func _on_area_entered(area: Area2D) -> void:
+	$AudioStreamPlayer2D.play()
 	if area.has_method("punch"):
-		health-=1
+		health-=1.5
 	else:
 		health -=3
 	
-	area.queue_free()
+	
 	var tween = create_tween()
 	tween.tween_property($AnimatedSprite2D, "material:shader_parameter/amount", 1.0, 0.0)
 	tween.tween_property($AnimatedSprite2D, "material:shader_parameter/amount", 0.0, 0.1).set_delay(0.2)
+	
+	area.queue_free()
 
 func _process(delta: float) -> void:
 	update_health()
@@ -61,6 +64,7 @@ func _process(delta: float) -> void:
 
 func check_death():
 	if health<=0:
+		$AudioStreamPlayer2D.play()
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:

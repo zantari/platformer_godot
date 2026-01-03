@@ -57,7 +57,16 @@ func _on_portal_body_entered(body: Node2D) -> void:
 		get_tree().change_scene_to_file("res://Scenes/won.tscn")
 
 
-func _on_kill_z_one_body_entered(body: Node2D) -> void:
+
+
+
+func _on_killzone_body_entered(body: Node2D) -> void:
+	if 'get_damage' in body:
+		
+		body.get_damage(1000)
+
+
+func _on_kilzone_3_body_entered(body: Node2D) -> void:
 	if 'get_damage' in body:
 		
 		body.get_damage(1000)

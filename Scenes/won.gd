@@ -1,5 +1,5 @@
 extends Node2D
-var levels = ["res://Scenes/level_1.tscn", "res://Scenes/LevelBG.tscn", "res://Scenes/level_3.tscn","res://Scenes/level_4.tscn" ]
+var levels = ["res://Scenes/level_1.tscn", "res://Scenes/LevelBG.tscn", "res://Scenes/level_3.tscn","res://Scenes/level_4.tscn", "res://Scenes/level_5.tscn"]
 func _ready() -> void:
 	get_tree().call_group('UI', 'setPoints', PlayerData.getMoney())
 	
@@ -44,6 +44,7 @@ func _on_level_2_body_entered(body: Node2D) -> void:
 
 func _on_level_3_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):	
+		
 		var levelId = 2
 		transition(body, levelId)
 
@@ -51,4 +52,10 @@ func _on_level_3_body_entered(body: Node2D) -> void:
 func _on_level_4_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):	
 		var levelId = 3
+		transition(body, levelId)
+
+
+func _on_level_5_body_entered(body: Node2D) -> void:
+	if body.has_method("player"):	
+		var levelId = 4
 		transition(body, levelId)

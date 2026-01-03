@@ -1,0 +1,156 @@
+[gd_scene load_steps=15 format=4 uid="uid://dqx2kqcryx6xq"]
+
+[ext_resource type="Script" uid="uid://cycnpq0xboqdj" path="res://Scenes/level_5.gd" id="1_02esc"]
+[ext_resource type="Texture2D" uid="uid://jmbj0lqu6g4v" path="res://graphics/Tilemaps/bridge tilemap.png" id="1_ihmlp"]
+[ext_resource type="Texture2D" uid="uid://dt1mgx7ocga0w" path="res://graphics/Tilemaps/tilemap.png" id="2_ip5ew"]
+[ext_resource type="PackedScene" uid="uid://b616fb502buph" path="res://Scenes/player.tscn" id="3_hproo"]
+[ext_resource type="PackedScene" uid="uid://yg4vuc08pan4" path="res://Scenes/witch.tscn" id="4_ip5ew"]
+[ext_resource type="Texture2D" uid="uid://ddlih3kbh4xnl" path="res://graphics/portals/sztaluga5.png" id="6_gfyxx"]
+[ext_resource type="FontFile" uid="uid://behc35tk1bwq2" path="res://fonts/basis33/basis33.ttf" id="7_xfwg7"]
+[ext_resource type="PackedScene" uid="uid://kiak6bmaoyx" path="res://Scenes/checkpoint.tscn" id="8_r8l1h"]
+[ext_resource type="PackedScene" uid="uid://gd6q6e3o074d" path="res://Scenes/gun.tscn" id="9_gfyxx"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_26dk1"]
+texture = ExtResource("1_ihmlp")
+margins = Vector2i(1, 1)
+separation = Vector2i(1, 1)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -3.7770329, -8, -3.4173155)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -3.057598, -8, -3.057598)
+1:0/0/physics_layer_0/polygon_0/one_way = true
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.5756207, 8, -3.4173164, -8, 4.4964676, -8, 6.2950554, 8)
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -3.2374563, -3.956892, -3.4173155, -5.5756207, 8, 6.4749146, 8, 3.7770329, -2.877739, 8, -3.057598, 8, -8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.5971746, -8, 3.956892, -8, 4.136751, 8, -3.7770338, 8)
+3:1/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -3.5971737, 8, -3.057598, 8, -8)
+0:2/0/physics_layer_0/polygon_0/one_way = true
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -3.057598, -8, -2.877739)
+1:2/0/physics_layer_0/polygon_0/one_way = true
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -3.5971737, -8, -2.877739)
+2:2/0/physics_layer_0/polygon_0/one_way = true
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mb3x2"]
+texture = ExtResource("2_ip5ew")
+margins = Vector2i(1, 1)
+separation = Vector2i(1, 1)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.8992939, 8, -1.2590103, 2.6978798, 8, -2.5180225, 8)
+1:2/0/physics_layer_0/polygon_0/one_way = true
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:3/0 = 0
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 2.6978817, 8, 4.856186, 8, 8, 8, -1.978445)
+2:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_02esc"]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 23
+sources/1 = SubResource("TileSetAtlasSource_mb3x2")
+sources/0 = SubResource("TileSetAtlasSource_26dk1")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ip5ew"]
+size = Vector2(4037, 1060)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68k2k"]
+size = Vector2(28, 12.5)
+
+[node name="level_5" type="Node2D"]
+script = ExtResource("1_02esc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -4014.0
+offset_top = -2429.0
+offset_right = 7487.0
+offset_bottom = 4822.0
+color = Color(0.4103575, 0.6696989, 0.68083316, 1)
+
+[node name="Terrain" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAA2ABwAAQABAAIAAAA3ABwAAQABAAIAAAA1ABwAAQABAAIAAAA6ABwAAQABAAIAAAA7ABwAAQABAAIAAAA8ABwAAQABAAIAAAAzABsAAQABAAIAAAAyABsAAQABAAIAAAAxABsAAQABAAIAAAA0ABkAAQABAAIAAAA1ABkAAQABAAIAAAA2ABkAAQABAAIAAAA3ABkAAQABAAIAAAA6ABkAAQABAAIAAAA7ABkAAQABAAIAAAA8ABkAAQABAAIAAAA+ABsAAQABAAIAAAA/ABsAAQABAAIAAABAABsAAQABAAIAAAA=")
+tile_set = SubResource("TileSet_02esc")
+
+[node name="Player" parent="." instance=ExtResource("3_hproo")]
+position = Vector2(858, 372)
+
+[node name="Witch" parent="." instance=ExtResource("4_ip5ew")]
+position = Vector2(962, 445)
+
+[node name="killzone" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(778, 1024)
+shape = SubResource("RectangleShape2D_ip5ew")
+
+[node name="back" type="Area2D" parent="."]
+position = Vector2(488, 280)
+collision_layer = 32
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="back"]
+position = Vector2(463, 106)
+texture = ExtResource("6_gfyxx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="back"]
+position = Vector2(464, 97)
+shape = SubResource("RectangleShape2D_68k2k")
+
+[node name="Label" type="Label" parent="back"]
+texture_filter = 1
+offset_left = 445.0
+offset_top = 114.0
+offset_right = 493.0
+offset_bottom = 130.88235
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.94509804, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("7_xfwg7")
+theme_override_font_sizes/font_size = 16
+text = "COMING SOON"
+structured_text_bidi_override = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Checkpoint1" parent="." instance=ExtResource("8_r8l1h")]
+position = Vector2(857, 282)
+
+[node name="Gun" parent="." instance=ExtResource("9_gfyxx")]
+position = Vector2(1065, 431)
+
+[node name="Bullets" type="Node2D" parent="."]
+
+[connection signal="punch" from="Player" to="." method="_on_player_punch"]
+[connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
+[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]
+[connection signal="body_entered" from="back" to="." method="_on_back_body_entered"]

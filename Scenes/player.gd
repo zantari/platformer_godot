@@ -65,17 +65,20 @@ func get_input():
 	direction_x = Input.get_axis("left", "right")
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		$Sounds/jump.play()
 		velocity.y = jump_height
 	if Input.is_action_just_pressed("shoot"):
 		
 		if can_shoot and has_gun:
 			shoot.emit(global_position, facing_right)
+			$Sounds/shoot.play()
 			can_shoot=false
 			$Timers/Cooldown_gun_timer.start()
 			$Timers/FireTimer.start()
 			$Fire.get_child(facing_right).show()
 		elif can_shoot and !has_gun and is_classic_attack == false:
 			punch.emit(global_position, facing_right)
+			$Sounds/punch.play()
 			
 			is_classic_attack = true
 			$AnimatedSprite2D.play("basic_attack")
@@ -101,6 +104,7 @@ func get_animation():
 		
 		if not is_on_floor():
 			animation = 'jump'
+			
 		elif direction_x !=0:
 			animation = 'walk'
 		if has_gun:
@@ -134,6 +138,7 @@ func _on_fire_timer_timeout() -> void:
 func get_damage(dmg):
 	
 	if vulnerable:
+		$Sounds/dmg_get.play()
 		health -= dmg
 		var tween = create_tween()
 		tween.tween_property($AnimatedSprite2D, "material:shader_parameter/amount", 1.0, 0.0)

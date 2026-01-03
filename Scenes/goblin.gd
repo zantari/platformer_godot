@@ -63,13 +63,17 @@ func _process(delta: float) -> void:
 	update_animation(direction_x)
 
 func shoot_fireball(_dir):
+	
 	can_attack = false
 	can_move = false
 	$AnimatedSprite2D.play("attack")
 	
 	
+	
 	$Fireball_timer.start()
 	$movement.start()
+	await get_tree().create_timer(0.5).timeout
+	$AudioStreamPlayer2D.play()
 
 
 func _on_animated_sprite_2d_frame_changed() -> void:

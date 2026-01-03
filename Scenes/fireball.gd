@@ -2,7 +2,7 @@ extends Area2D
 
 var direction := 1
 var dmg = 20
-@export var speed = 100
+var speed = 100
 
 func _ready() -> void:
 	
@@ -11,7 +11,17 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	position.x += speed *direction* delta
+	position.x += 100*direction*delta
+	var player = get_tree().get_first_node_in_group("Player")
+	if player:
+		var diff_x = player.global_position.x - global_position.x
+		var diff_y = player.global_position.y - global_position.y
+		
+		if abs(diff_x) <= 30 and abs(diff_y) <= 50:
+			if not $AudioStreamPlayer2D.playing:
+				$AudioStreamPlayer2D.pitch_scale = randf_range(1.7, 1.8)
+				$AudioStreamPlayer2D.play()
+	
 	
 
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctt8u7i8yhivi"]
+[gd_scene load_steps=13 format=3 uid="uid://ctt8u7i8yhivi"]
 
 [ext_resource type="Script" uid="uid://neoi8dramtru" path="res://Scenes/zombie.gd" id="1_jmu02"]
 [ext_resource type="Shader" uid="uid://2auxmwafr4ty" path="res://Scenes/flicker.gdshader" id="2_eseir"]
 [ext_resource type="Texture2D" uid="uid://bxf84fl0udapi" path="res://graphics/Enemies/zombie walk 2x1.png" id="3_7nqyo"]
+[ext_resource type="AudioStream" uid="uid://447ol3pmbxsl" path="res://assets/sounds/zombie-6851.mp3" id="4_vy0uf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lnshm"]
 resource_local_to_scene = true
@@ -93,8 +94,20 @@ show_percentage = false
 wait_time = 3.0
 autostart = true
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vy0uf")
+volume_db = -6.679
+pitch_scale = 0.63
+max_distance = 200.0
+panning_strength = 0.05
+
+[node name="playsound" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="BorderArea2D" to="." method="_on_border_area_2d_body_entered"]
 [connection signal="body_exited" from="RightCliffArea" to="." method="_on_right_cliff_area_body_exited"]
 [connection signal="body_exited" from="LeftCliffArea" to="." method="_on_left_cliff_area_body_exited"]
+[connection signal="timeout" from="playsound" to="." method="_on_playsound_timeout"]
