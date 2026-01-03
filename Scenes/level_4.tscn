@@ -1991,7 +1991,7 @@ position = Vector2(1227, -480)
 [node name="Bullets" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("5_3ntyy")]
-position = Vector2(303, -508)
+position = Vector2(324, -381)
 
 [node name="CheckPoints" type="Node2D" parent="."]
 
@@ -2012,6 +2012,8 @@ scale = Vector2(5, 0.1)
 
 [node name="Portal" parent="." instance=ExtResource("17_mbnb1")]
 position = Vector2(286, -355)
+collision_layer = 32
+collision_mask = 34
 
 [node name="killZones" type="Node2D" parent="."]
 

@@ -31,6 +31,7 @@ func _on_player_punch(pos: Vector2, facing_right) -> void:
 
 
 func _on_portal_body_entered(body: Node2D) -> void:
+	print("yesy")
 	if body.has_method("player"):	
 		body.set_physics_process(false)
 		
